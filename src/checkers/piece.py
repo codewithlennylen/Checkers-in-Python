@@ -1,5 +1,5 @@
 import pygame
-from .constants import RED, SQUARE_SIZE, GREY
+from .constants import RED, SQUARE_SIZE, GREY, CROWN
 
 
 class Piece:
@@ -26,12 +26,26 @@ class Piece:
 
     def make_king(self):
         self.king = True
+    
+    def move(self, row, col):
+        """Moves the Piece to its new postion (row,col)
+
+        Args:
+            row (int): Row to move the piece to
+            col (int): Col to move the piece to
+        """
+        self.row = row
+        self.col = col
+        self.calc_pos()
 
     def draw(self,win):
         self.calc_pos()
         radius = (SQUARE_SIZE//2) - self.PADDING
         pygame.draw.circle(win,GREY, (self.x,self.y), radius + self.OUTLINE)
         pygame.draw.circle(win,self.color, (self.x,self.y), radius)
+
+        if self.king:
+            win.blit(CROWN, (self.x - CROWN.get_width()//2, self.y - CROWN.get_height()//2))
     
     def __repr__(self) -> str:
         return str(self.color)
