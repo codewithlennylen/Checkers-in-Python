@@ -31,6 +31,7 @@ class Piece:
         """
         self.row = row
         self.col = col
+        self.calc_pos()
 
     def draw(self,win):
         self.calc_pos()

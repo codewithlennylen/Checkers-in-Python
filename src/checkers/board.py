@@ -7,7 +7,7 @@ class Board:
     def __init__(self):
         # 2D List storing pieces
         self.board = []
-        self.selected_piece = None
+        # self.selected_piece = None
         self.white_left = self.red_left = 12
         self.red_kings = self.white_kings = 0
         self.create_board()
@@ -55,6 +55,18 @@ class Board:
     
     def get_piece(self, row, col):
         return self.board[row][col]
+
+    def evaluate(self):
+        return self.white_left - self.red_left + (self.white_kings*0.5 - self.red_kings*0.5)
+
+    def get_all_pieces(self,color):
+        pieces = []
+        for row in self.board:
+            for piece in row:
+                if piece != 0 and piece.color == color:
+                    pieces.append(piece)
+        
+        return pieces
 
     def remove(self, pieces):
         for piece in pieces:
