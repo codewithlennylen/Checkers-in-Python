@@ -1,3 +1,4 @@
 *.pyc
 src/checkers/__pycache__/board.cpython-38.pyc
 *.pyc
+src/checkers/__pycache__/constants.cpython-38.pyc
