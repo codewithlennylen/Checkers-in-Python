@@ -40,7 +40,7 @@ class Board:
                         self.board[row].append(0)
                 else:
                     self.board[row].append(0)
-        # print(self.board)
+        # #print(self.board)
     
     def move(self, piece, row, col):
         self.board[piece.row][piece.col], self.board[row][col] = self.board[row][col],self.board[piece.row][piece.col]

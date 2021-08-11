@@ -28,26 +28,37 @@ class Game:
 
     def select(self, row, col):
         if self.selected:
+            #print("piece already selected")
             result = self._move(row,col)
             if not result:
+                #print("That was invalid. Calling select again")
                 self.selected = None
                 self.select(row,col)
         
         piece = self.board.get_piece(row,col)
+        #print("Getting Piece from board")
         if piece != 0 and piece.color == self.turn:
             self.selected = piece
             self.valid_moves = self.board.get_valid_moves(piece)
+            #print(f"We got moves: {self.valid_moves}")
+            #print("Returning True")
             return True
-            
+
+        #print("Returning False")    
         return False
 
     def _move(self, row,col):
+        #print("trying to move")
         piece = self.board.get_piece(row,col)
-        if self.selected and piece != 0 and (row,col) in self.valid_moves:
+        #print("Got piece at row,col")
+        if self.selected and piece == 0 and (row,col) in self.valid_moves:
+            #print("Calling board.move")
             self.board.move(self.selected, row, col)
             skipped = self.valid_moves[(row,col)]
             if skipped:
+                #print("Piece captured")
                 self.board.remove(skipped)
+            #print("Changing turns")
             self.change_turn()
         else:
             return False

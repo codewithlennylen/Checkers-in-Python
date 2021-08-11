@@ -1,0 +1,3 @@
+*.pyc
+src/checkers/__pycache__/board.cpython-38.pyc
+*.pyc
